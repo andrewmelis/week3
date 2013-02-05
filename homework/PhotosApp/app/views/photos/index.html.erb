@@ -1,25 +1,21 @@
-<h1>Listing photos</h1>
+<h1/>Photos<h1>
+    
+	
+<%= link_to "Click here to add a new picutre", new_photo_url %>
 
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Url</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<ul>
+    <% @photos.each do |photo| %>
+    <li><%= link_to photo.title, photo_url(photo.id) %>
+    |
+    <%= link_to "Edit", edit_photo_url(photo.id) %>
+    |
+    <%= link_to "Delete", photo_url(photo.id), :method => "delete", 
+    :data => { :confirm => "Hold up, yah?" } %>
 
-<% @photos.each do |photo| %>
-  <tr>
-    <td><%= photo.title %></td>
-    <td><%= photo.url %></td>
-    <td><%= link_to 'Show', photo %></td>
-    <td><%= link_to 'Edit', edit_photo_path(photo) %></td>
-    <td><%= link_to 'Destroy', photo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
+    </li>
+    
 <% end %>
-</table>
+</ul>
 
-<br />
 
-<%= link_to 'New Photo', new_photo_path %>
+
